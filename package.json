@@ -1,0 +1,33 @@
+{
+  "name": "apply-spec-f",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturAralin/applySpecF.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArturAralin/applySpecF/issues"
+  },
+  "homepage": "https://github.com/ArturAralin/applySpecF#readme",
+  "dependencies": {
+    "dottie": "^2.0.0",
+    "fluture": "^8.0.2",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "mocha": "^5.2.0"
+  }
+}
