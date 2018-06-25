@@ -5,6 +5,7 @@ const {
   pick,
   values,
   curryN,
+  applySpec,
 } = require('ramda');
 
 const getUnnestedVals = (o, parentPath) => {
@@ -52,8 +53,9 @@ const mergeAsyncResults = curryN(2, (results, vals) => ({
   ...mergeAll(vals),
 }));
 
-function applySpecF(o, n) {
-  const vals = mergeAll(getUnnestedVals(o));
+function applySpecFn(n, spec, o) {
+  const data = applySpec(spec)(o);
+  const vals = mergeAll(getUnnestedVals(data));
   const furutes = filterFutures(vals);
   const parallelsCount = n || Infinity;
 
@@ -63,4 +65,11 @@ function applySpecF(o, n) {
     .map(dottie.transform);
 }
 
-module.exports = applySpecF;
+const applySpecF = curryN(2, (spec, o) => applySpecFn(Infinity, spec, o));
+const applySpecFLimit = curryN(3, (n, spec, o) => applySpecFn(n, spec, o));
+
+module.exports = {
+  default: applySpecF,
+  applySpecF,
+  applySpecFLimit,
+};
