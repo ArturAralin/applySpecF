@@ -6,6 +6,7 @@ const {
   values,
   curryN,
   applySpec,
+  type,
 } = require('ramda');
 
 const getUnnestedVals = (o, parentPath) => {
@@ -20,7 +21,7 @@ const getUnnestedVals = (o, parentPath) => {
     const value = o[key];
     const currentParentPath = parentPath.concat([key]);
     const isNotFuture = !Future.isFuture(value);
-    const isNestedVal = typeof value === 'object' && !Array.isArray(value);
+    const isNestedVal = type(value) === 'Object';
 
     if (isNotFuture && isNestedVal) {
       vals = [...vals, ...getUnnestedVals(value, currentParentPath)];

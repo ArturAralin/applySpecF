@@ -59,4 +59,32 @@ describe('apply-spec-f', () => {
 
     expect(applySpecF(spec, obj).promise()).to.eventually.rejectedWith(obj);
   });
+
+  it('check types safety', () => {
+    const obj = {
+      num: 123,
+      bool: true,
+      nan: NaN,
+      str: 'str',
+      nil: null,
+      obj: {
+        x: 1,
+      },
+      date: new Date(),
+      sym: Symbol('xx'),
+    };
+
+    const spec = {
+      num: prop('num'),
+      bool: prop('bool'),
+      nan: prop('nan'),
+      str: prop('str'),
+      nil: prop('nil'),
+      obj: prop('obj'),
+      date: prop('date'),
+      sym: prop('sym'),
+    };
+
+    expect(applySpecF(spec, obj).promise()).to.eventually.deep.equals(obj);
+  });
 });
